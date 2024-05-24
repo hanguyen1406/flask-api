@@ -89,6 +89,11 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.label_12 = QtWidgets.QLabel(self.groupBox)
         self.label_12.setObjectName("label_12")
         self.horizontalLayout.addWidget(self.label_12)
+        self.label_13 = QtWidgets.QLabel(self.groupBox)
+        self.label_13.setObjectName("label_13")
+        self.gridLayout.addWidget(self.label_13, 8, 0, 1, 1)
+        
+
         self.spinBox_2 = QtWidgets.QSpinBox(self.groupBox)
         self.spinBox_2.setMaximum(999999999)
         self.spinBox_2.setProperty("value", 8888)
@@ -144,7 +149,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.pushButton_4 = QtWidgets.QPushButton(self.groupBox)
         self.pushButton_4.setStyleSheet(".QPushButton{background-color: rgb(0, 170, 255); width: 200px; height: 35px}")
         self.pushButton_4.setObjectName("pushButton_4")
-        self.gridLayout.addWidget(self.pushButton_4, 9, 1, 1, 1)
+        self.gridLayout.addWidget(self.pushButton_4, 10, 1, 1, 1)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.pushButton_2 = QtWidgets.QPushButton(self.groupBox)
@@ -155,12 +160,13 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.pushButton_3.setStyleSheet(".QPushButton{background-color: rgb(85, 170, 127); width: 200px; height: 35px}")
         self.pushButton_3.setObjectName("pushButton_3")
         self.horizontalLayout_2.addWidget(self.pushButton_3)
-        self.gridLayout.addLayout(self.horizontalLayout_2, 8, 0, 1, 2)
+        self.gridLayout.addLayout(self.horizontalLayout_2, 9, 0, 1, 2)
         self.gridLayout_2.addWidget(self.groupBox, 0, 0, 1, 1)
         self.plainTextEdit = QtWidgets.QPlainTextEdit(self.centralwidget)
         self.plainTextEdit.setReadOnly(True)
         self.plainTextEdit.setObjectName("plainTextEdit")
         self.gridLayout_2.addWidget(self.plainTextEdit, 0, 1, 1, 1)
+        
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 975, 21))
@@ -186,6 +192,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.label_5.setText(_translate("MainWindow", "3 số đầu"))
         self.label_7.setText(_translate("MainWindow", "Số thứ 4"))
         self.label_12.setText(_translate("MainWindow", "số còn lại"))
+        self.label_13.setText(_translate("MainWindow", "Ngày đăng ký"))
         self.pushButton_7.setText(_translate("MainWindow", "Copy"))
         self.label_3.setText(_translate("MainWindow", "Ngày sinh:"))
         self.pushButton_8.setText(_translate("MainWindow", "Copy"))
@@ -229,7 +236,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.dateEdit.setDate(delta)
         self.previousValue=value
     def Copy(self):
-        QtWidgets.QApplication.clipboard().setText('{}\n\n{}\n\n{}\n\n{}\n\n{}'.format(f'{self.lineEdit_3.text()}{self.spinBox.value()}{self.spinBox_22.text()}{self.spinBox_2.value()}', self.lineEdit.text(), self.dateEdit.date().toPyDate().strftime(r'%d/%m/%Y'), self.pushButton.text(), self.dateEdit_2.date().toPyDate().strftime(r'%d/%m/%Y')))
+        QtWidgets.QApplication.clipboard().setText('{}\n\n{}\n\n{}\n\n{}\n\n{}\n\n{}\n\n{}'.format(f'{self.lineEdit_3.text()}{self.spinBox.value()}{self.spinBox_22.text()}{self.spinBox_2.value()}', self.lineEdit.text(), self.dateEdit.date().toPyDate().strftime(r'%d/%m/%Y'), self.pushButton.text(), self.dateEdit_2.date().toPyDate().strftime(r'%d/%m/%Y'), self.lineEdit_4.text(), self.lineEdit_5.text()))
     def _Copy(self):
         QtWidgets.QApplication.clipboard().setText(self.plainTextEdit.toPlainText())
     def Show(self, text):
@@ -243,10 +250,10 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         data = res.split('\n\n')
         
         import test
-        test.createCCcd("./rotated_image.jpg", "./mat_sau.jpg", data)
+        test.createCCcd("mat_truoc.jpg", "mat_sau.jpg", data)
 
-
-        # print(data)
+        self.Copy()
+        print(data)
 
 class Main(QtCore.QThread):
     Show=QtCore.pyqtSignal(str)
